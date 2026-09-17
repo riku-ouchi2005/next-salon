@@ -1,25 +1,25 @@
-import SectionHeading from "@/components/SectionHeading";
-// 店舗カードコンポーネントのインポート
-import ShopCard from "@/components/ShopCard"
-// モックデータのインポート
-import { MOCK_SHOPS } from "@/data/MockData";
+import type { Metadata } from "next";
+import "./globals.css";
+import Header from "@/components/Header";
 
-export default function Home() {
-  // shops にモックデータを代入
-  const shops = MOCK_SHOPS;
+export const metadata: Metadata = {
+  title: "Next Salon",
+  description: "美容院予約システム",
+};
 
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <div>
-      <SectionHeading
-        eyebrow="Featured Shops"
-        title="今日の気分から選べるサロン"
-        description="エリアやメニューから、あなたにぴったりのサロンを見つけましょう。"
-      />
-      <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3">
-        {shops.map((shop) => (
-          <ShopCard key={shop.id} shop={shop} />
-        ))}
-      </div>
-    </div>
+    <html lang="ja">
+      <body>
+        <Header />
+        <main className="mx-auto max-w-7xl px-8 py-4">
+          {children}
+        </main>
+      </body>
+    </html>
   );
 }
